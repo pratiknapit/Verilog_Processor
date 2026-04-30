@@ -1,0 +1,98 @@
+$date
+	Fri Mar 27 13:56:05 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module lab3_p1_TB $end
+$var wire 7 ! output_7seg [6:0] $end
+$var reg 4 " count [3:0] $end
+$var reg 2 # input_c [1:0] $end
+$scope module instantiate_decoder $end
+$var wire 2 $ code [1:0] $end
+$var reg 7 % decoded_output [6:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b111 %
+b0 $
+b0 #
+b0 "
+b111 !
+$end
+#50000
+b1110000 !
+b1110000 %
+b1 #
+b1 $
+b1 "
+#100000
+b11100 !
+b11100 %
+b10 #
+b10 $
+b10 "
+#150000
+b1100011 !
+b1100011 %
+b11 #
+b11 $
+b11 "
+#200000
+b100 "
+#250000
+b101 "
+#300000
+b110 "
+#350000
+b111 "
+#400000
+b1000 "
+#450000
+b1001 "
+#500000
+b1010 "
+#550000
+b1011 "
+#600000
+b1100 "
+#650000
+b1101 "
+#700000
+b1110 "
+#750000
+b1111 "
+#800000
+b111 !
+b111 %
+b0 #
+b0 $
+b0 "
+#850000
+b1110000 !
+b1110000 %
+b1 #
+b1 $
+b1 "
+#900000
+b11100 !
+b11100 %
+b10 #
+b10 $
+b10 "
+#950000
+b1100011 !
+b1100011 %
+b11 #
+b11 $
+b11 "
+#1000000
+b100 "

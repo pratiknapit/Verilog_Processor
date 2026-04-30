@@ -1,0 +1,95 @@
+$date
+	Fri Mar 27 11:27:21 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module one_bit_2to1mux_TB $end
+$var wire 1 ! output1 $end
+$var reg 4 " count [3:0] $end
+$var reg 1 # input1 $end
+$var reg 1 $ input2 $end
+$var reg 1 % select $end
+$scope module instantiate_mux2 $end
+$var wire 1 ! m $end
+$var wire 1 % s $end
+$var wire 1 # x $end
+$var wire 1 $ y $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+0%
+1$
+0#
+b0 "
+0!
+$end
+#50000
+1!
+1%
+b1 "
+#100000
+1!
+0%
+0$
+1#
+b10 "
+#150000
+0!
+1%
+b11 "
+#200000
+0%
+0#
+b100 "
+#250000
+b101 "
+#300000
+b110 "
+#350000
+b111 "
+#400000
+b1000 "
+#450000
+b1001 "
+#500000
+b1010 "
+#550000
+b1011 "
+#600000
+b1100 "
+#650000
+b1101 "
+#700000
+b1110 "
+#750000
+b1111 "
+#800000
+1$
+b0 "
+#850000
+1!
+1%
+b1 "
+#900000
+1!
+0%
+0$
+1#
+b10 "
+#950000
+0!
+1%
+b11 "
+#1000000
+0%
+0#
+b100 "
