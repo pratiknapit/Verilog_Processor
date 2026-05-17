@@ -21,9 +21,10 @@ module control_unit(state_reg(in) instruction, signals, state_reg(out))
             Ry = instruction[3:0] = 0010
             
             state_reg_out = add
-
-
             
+
+
+
     if add2
     r2 tri = 1
 
