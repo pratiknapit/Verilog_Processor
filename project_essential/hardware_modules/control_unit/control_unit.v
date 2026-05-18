@@ -12,5 +12,5 @@ module control_unit(clk, rst, instruction, datapath_signals, immediate_data);
 
     next_state_cu next_state(.state(current_state_wire), .in(operation_code), .rst(rst), .n_state(next_state_wire));
     four_bit_register inst_reg(.clk(clk), .rst(rst), .D(next_state_wire), .Q(current_state_wire));
-    output_signal output_signal(.state(curr_state_wire), .instruction_argument(operation_arguments), .datapath_output_signals(datapath_signals));
+    output_signal output_signal(.state(current_state_wire), .instruction_argument(operation_arguments), .datapath_output_signals(datapath_signals));
 endmodule

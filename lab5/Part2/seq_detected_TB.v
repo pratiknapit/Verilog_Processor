@@ -38,14 +38,4 @@ module seq_detector_TB;
     end
 
 
-
-    // Dump VCD for GTKWave
-    initial begin
-        $dumpfile("seq_detector_TB.vcd");
-        $dumpvars(0, seq_detector_TB);
-        #1000 
-        $finish;
-	end
-
-
 endmodule

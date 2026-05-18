@@ -14,17 +14,17 @@ module next_state_cu(state, in, rst, n_state);
 
     always @(temp) begin
         casez(temp)
-            6'b000000 : begin n_state <= 4'b0001 end;
-            6'b000001 : begin n_state <= 4'b0101 end;
-            6'b000010 : begin n_state <= 4'b0010 end;
-            // 6'b000011 : begin n_state <= 4'b0010 end;
-            6'b0001?? : begin n_state <= 4'b0000 end;
-            6'b0010?? : begin n_state <= 4'b0011 end;
-            6'b0011?? : begin n_state <= 4'b0100 end;
-            6'b0100?? : begin n_state <= 4'b0000 end;
-            6'b0101?? : begin n_state <= 4'b0000 end;
+            6'b000000 : begin n_state <= 4'b0001; end
+            6'b000001 : begin n_state <= 4'b0101; end
+            6'b000010 : begin n_state <= 4'b0010; end
+            // 6'b000011 : begin n_state <= 4'b0010; end
+            6'b0001?? : begin n_state <= 4'b0000; end
+            6'b0010?? : begin n_state <= 4'b0011; end
+            6'b0011?? : begin n_state <= 4'b0100; end
+            6'b0100?? : begin n_state <= 4'b0000; end
+            6'b0101?? : begin n_state <= 4'b0000; end
 
-            default : begin n_state <= 4'b0000 end;
+            default : begin n_state <= 4'b0000; end
         endcase
     end
 
