@@ -14,34 +14,52 @@ module output_signal(state, instruction_argument, datapath_output_signals);
         datapath_output_signals = 14'b0; // RESET EVERYTHING
 
         case(state)
-            4'd0: begin
+            4'd0: begin // RESTART
             end
 
-            4'd1: begin
+            4'd1: begin // LOAD
                 datapath_output_signals[Rx] = 1;
                 datapath_output_signals[12] = 1;
                 datapath_output_signals[13] = 1;
             end
 
-            4'd2: begin
+            4'd2: begin // ADD1
                 datapath_output_signals[Rx+4] = 1;
                 datapath_output_signals[8] = 1;
             end
 
-            4'd3: begin
+            4'd3: begin // ADD2
+                datapath_output_signals[11] = 0; //AddSub = 0
                 datapath_output_signals[Ry+4] = 1;
                 datapath_output_signals[9] = 1;
             end
 
-            4'd4: begin
+            4'd4: begin // ADD3
                 datapath_output_signals[10] = 1;
                 datapath_output_signals[Rx] = 1;
                 datapath_output_signals[13] = 1;
             end
 
-            4'd5: begin
+            4'd5: begin // MOVE
                 datapath_output_signals[Rx] = 1;
                 datapath_output_signals[Ry+4] = 1;
+                datapath_output_signals[13] = 1;
+            end
+
+            4'd6: begin //SUB1
+                datapath_output_signals[Rx+4] = 1;
+                datapath_output_signals[8] = 1;
+            end
+ 
+            4'd7: begin //SUB2
+                datapath_output_signals[11] = 1; //AddSub = 1
+                datapath_output_signals[Ry+4] = 1;
+                datapath_output_signals[9] = 1;
+            end
+
+            4'd8: begin //SUB3
+                datapath_output_signals[10] = 1;
+                datapath_output_signals[Rx] = 1;
                 datapath_output_signals[13] = 1;
             end
         endcase

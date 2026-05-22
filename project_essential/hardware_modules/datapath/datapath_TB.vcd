@@ -1,0 +1,332 @@
+$date
+	Fri May 22 11:33:28 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module datapath_TB $end
+$var reg 1 ! clk $end
+$var reg 14 " datapath_signals [13:0] $end
+$var reg 4 # immediate_data [3:0] $end
+$var reg 1 $ rst $end
+$scope module mydatapath $end
+$var wire 1 ! clk $end
+$var wire 14 % datapath_signals [13:0] $end
+$var wire 4 & four_bit_bus [3:0] $end
+$var wire 4 ' immediate_data [3:0] $end
+$var wire 1 $ rst $end
+$var wire 1 ( extern $end
+$var wire 1 ) done $end
+$var wire 1 * R3_out $end
+$var wire 1 + R3_en $end
+$var wire 4 , R3_Q [3:0] $end
+$var wire 1 - R2_out $end
+$var wire 1 . R2_en $end
+$var wire 4 / R2_Q [3:0] $end
+$var wire 1 0 R1_out $end
+$var wire 1 1 R1_en $end
+$var wire 4 2 R1_Q [3:0] $end
+$var wire 1 3 R0_out $end
+$var wire 1 4 R0_en $end
+$var wire 4 5 R0_Q [3:0] $end
+$var wire 1 6 G_out $end
+$var wire 1 7 G_en $end
+$var wire 4 8 G_Q [3:0] $end
+$var wire 1 9 AddSub $end
+$var wire 1 : A_en $end
+$var wire 4 ; ALU_result [3:0] $end
+$var wire 4 < ALU_arg1 [3:0] $end
+$scope module A $end
+$var wire 4 = D [3:0] $end
+$var wire 1 ! clk $end
+$var wire 1 : en $end
+$var wire 1 $ rst $end
+$var reg 4 > Q [3:0] $end
+$upscope $end
+$scope module G $end
+$var wire 1 ! clk $end
+$var wire 1 7 en $end
+$var wire 1 $ rst $end
+$var wire 4 ? D [3:0] $end
+$var reg 4 @ Q [3:0] $end
+$upscope $end
+$scope module G_tri $end
+$var wire 1 6 en $end
+$var wire 4 A in [3:0] $end
+$var reg 4 B out [3:0] $end
+$upscope $end
+$scope module R0 $end
+$var wire 4 C D [3:0] $end
+$var wire 1 ! clk $end
+$var wire 1 4 en $end
+$var wire 1 $ rst $end
+$var reg 4 D Q [3:0] $end
+$upscope $end
+$scope module R0_tri $end
+$var wire 1 3 en $end
+$var wire 4 E in [3:0] $end
+$var reg 4 F out [3:0] $end
+$upscope $end
+$scope module R1 $end
+$var wire 4 G D [3:0] $end
+$var wire 1 ! clk $end
+$var wire 1 1 en $end
+$var wire 1 $ rst $end
+$var reg 4 H Q [3:0] $end
+$upscope $end
+$scope module R1_tri $end
+$var wire 1 0 en $end
+$var wire 4 I in [3:0] $end
+$var reg 4 J out [3:0] $end
+$upscope $end
+$scope module R2 $end
+$var wire 4 K D [3:0] $end
+$var wire 1 ! clk $end
+$var wire 1 . en $end
+$var wire 1 $ rst $end
+$var reg 4 L Q [3:0] $end
+$upscope $end
+$scope module R2_tri $end
+$var wire 1 - en $end
+$var wire 4 M in [3:0] $end
+$var reg 4 N out [3:0] $end
+$upscope $end
+$scope module R3 $end
+$var wire 4 O D [3:0] $end
+$var wire 1 ! clk $end
+$var wire 1 + en $end
+$var wire 1 $ rst $end
+$var reg 4 P Q [3:0] $end
+$upscope $end
+$scope module R3_tri $end
+$var wire 1 * en $end
+$var wire 4 Q in [3:0] $end
+$var reg 4 R out [3:0] $end
+$upscope $end
+$scope module adder $end
+$var wire 4 S A [3:0] $end
+$var wire 4 T B [3:0] $end
+$var reg 4 U result [3:0] $end
+$upscope $end
+$scope module extern_data $end
+$var wire 1 ( en $end
+$var wire 4 V in [3:0] $end
+$var reg 4 W out [3:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+bx W
+bx V
+bx U
+bx T
+b0 S
+bz R
+b0 Q
+b0 P
+bx O
+bz N
+b0 M
+b0 L
+bx K
+bz J
+b0 I
+b0 H
+bx G
+bz F
+b0 E
+b0 D
+bx C
+bz B
+b0 A
+b0 @
+bx ?
+b0 >
+bx =
+b0 <
+bx ;
+x:
+x9
+b0 8
+x7
+x6
+b0 5
+x4
+x3
+b0 2
+x1
+x0
+b0 /
+x.
+x-
+b0 ,
+x+
+x*
+x)
+x(
+bx '
+bx &
+bx %
+1$
+bx #
+bx "
+0!
+$end
+#5000
+1!
+#10000
+0!
+0$
+#15000
+b101 ;
+b101 ?
+b101 U
+b101 &
+b101 =
+b101 C
+b101 G
+b101 K
+b101 O
+b101 T
+b101 W
+1)
+1(
+09
+06
+07
+0:
+0*
+0-
+00
+03
+0+
+0.
+01
+14
+b101 #
+b101 '
+b101 V
+b11000000000001 "
+b11000000000001 %
+1!
+#20000
+0!
+#25000
+b100 ;
+b100 ?
+b100 U
+b100 &
+b100 =
+b100 C
+b100 G
+b100 K
+b100 O
+b100 T
+b100 W
+b101 5
+b101 D
+b101 E
+11
+04
+b100 #
+b100 '
+b100 V
+b11000000000010 "
+b11000000000010 %
+1!
+#30000
+0!
+#35000
+b101 ;
+b101 ?
+b101 U
+bz W
+b101 &
+b101 =
+b101 C
+b101 G
+b101 K
+b101 O
+b101 T
+b101 F
+b100 2
+b100 H
+b100 I
+0)
+0(
+1:
+13
+01
+b100010000 "
+b100010000 %
+1!
+#40000
+0!
+#45000
+b1001 ;
+b1001 ?
+b1001 U
+b100 J
+b100 &
+b100 =
+b100 C
+b100 G
+b100 K
+b100 O
+b100 T
+bz F
+b101 <
+b101 >
+b101 S
+17
+0:
+10
+03
+b1000100000 "
+b1000100000 %
+1!
+#50000
+0!
+#55000
+b1110 ;
+b1110 ?
+b1110 U
+b1001 B
+b1001 &
+b1001 =
+b1001 C
+b1001 G
+b1001 K
+b1001 O
+b1001 T
+bz J
+b1001 8
+b1001 @
+b1001 A
+1)
+16
+07
+00
+14
+b10010000000001 "
+b10010000000001 %
+1!
+#60000
+0!
+#65000
+b1001 5
+b1001 D
+b1001 E
+1!
+#70000
+0!
+#75000
+1!

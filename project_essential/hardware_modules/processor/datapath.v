@@ -25,7 +25,7 @@ module datapath(clk, rst, datapath_signals, immediate_data, done);
     four_bit_tri_buf R3_tri(.en(R3_out), .in(R3_Q), .out(four_bit_bus));
 
     four_bit_register_en A(.clk(clk), .rst(rst), .en(A_en), .D(four_bit_bus), .Q(ALU_arg1));
-    ALU adder(.A(ALU_arg1), .B(four_bit_bus), .result(ALU_result));
+    ALU adder(.A(ALU_arg1), .B(four_bit_bus), .addSub(AddSub), .result(ALU_result));
 
     four_bit_register_en G(.clk(clk), .rst(rst), .en(G_en), .D(ALU_result), .Q(G_Q));
     four_bit_tri_buf G_tri(.en(G_out), .in(G_Q), .out(four_bit_bus));

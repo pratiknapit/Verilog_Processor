@@ -27,15 +27,15 @@ module control_unit_TB;
         #10
         rst = 0;
 
-        #10
+        @(posedge clk); // wait for pos clock edge
         instruction = 8'b00001001; // LDI R0, 9
         #20
         instruction = 8'b01001000; // MOV R0, R2
         #20
         instruction = 8'b10110000; // ADD R1, R2
-        #40
+        #50
 
-        #10 $finish;
+        $finish;
     end
 
 endmodule
