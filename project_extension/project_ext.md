@@ -3,19 +3,21 @@
 => ALU performs 16bit addition, 16bit substration & 16bit logic. (Henry/Steven) - ADD, SUB, INC, DEC, LSL
 
 For this project we will have these instructions
-- LOAD Rx, 14
+- LOAD R3, 64 -> 0001 0011 0100 0000 (16bit instruction). PMEM 16bit wide & 256 addresses
 - MOV Rx, Ry
 - ADD Rx, Ry
 - SUB Rx, Ry
 - INC Rx
 - DEC Rx
 - LSL Rx
+
 - JMP k (Means jump to k instructions later => PC -> PC+k+1)
-- CP Rx, Ry (Store in status reg N == 1 if Rx < Ry)
-- BRSH k (Means branch to k instructions later if Rx >= Ry)
-- BRLO k (Means branch to k instructions later if Rx < Ry)
-- LDS Rx, Addr (Load addr from RAM into Rx)
-- STS Addr, Rx (Store Rx value into RAM at address)
+- CP Rx, Ry (Store in status reg N == 1 if Rx < Ry) -> CP Rx, Ry -> ALU : Rx - Ry e.g. 3 - 5 => -2 (last bit will be 1) => N == 1;
+- BRSH k (Means branch to k instructions later if Rx >= Ry) = Read from Status Register
+- BRLO k (Means branch to k instructions later if Rx < Ry) = Read from Status Register
+
+- LDS Rx, Addr (Load addr from Data RAM into Rx)
+- STS Addr, Rx (Store Rx value into Data RAM at address)
 
 -----------> Total of 13 instructions => Need 4 bits for instruction.
 
@@ -41,6 +43,6 @@ Control Unit (Pratik)
 Datapath - Gets the correct signal and passes this to each registers (16in + 16out), A_reg (in), G_reg(in), PC(in),  => 40 signals.
 (Pratik/Steven)
 
-my_processor - 
+my_processor - Top level processor 
 
 
