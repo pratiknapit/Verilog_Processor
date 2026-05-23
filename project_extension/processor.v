@@ -1,12 +1,13 @@
 module my_processor (clk, reset, write, start, program_in);
 
     input reset, clk, start, write;
-    input [22:0] program_in;
+    input [15:0] program_in; // instruction.
 
-    wire [19:0] r_en_OH, tri_controller_OH;
+    wire [15:0] r_en, tri_state_out;
     wire [15:0] bus;
-    wire inc_PC, branch;
-    wire [5:0]  address;
+
+    wire inc_PC, branch; 
+    wire [5:0]  program_address, data_address;
     wire [22:0] code, ir_reg, code_out;
 
     // Controller Instance - next_state, state_register, output_signals. - Pratik.
