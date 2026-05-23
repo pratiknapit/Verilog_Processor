@@ -14,7 +14,7 @@ module my_processor (clk, reset, write, start, program_in);
     my_controller control(
         .clk(clk),
         .rst(reset),
-        .code(code_out),
+        .code(code),
         .r_en_OH(r_en_OH),
         .tri_controller_OH(tri_controller_OH),
         .inc_PC(inc_PC), // -> ADD -> ADD1, ADD2, ADD3 -> inc_PC => PC = PC + 1;
