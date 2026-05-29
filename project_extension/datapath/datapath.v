@@ -14,6 +14,7 @@ module datapath(
 
     wire[15:0] register_out[15:0];
     wire[15:0] ALU_arg1, ALU_result;
+    wire[15:0] status_reg_value;
 
     genvar i;
     generate
@@ -36,6 +37,9 @@ module datapath(
 
     sixteenbit_reg_enable G_reg(.clk(clk), .reset(reset), .en(G_en), .d_in(bus), .q_out(G_value));
     tri_state_buffer G_tri_state(.en(G_out), .in(G_value), .out(bus));
+
+    sixteenbit_reg_enable status_reg(.clk(clk), .reset(reset), .en(status_reg_en), .d_in(bus), .q_out(status_reg_value));
+    tri_state_buffer G_tri_state(.en(status_reg_out), .in(status_reg_value), .out(bus));
 
     DMEM data_memory(.clk(clk), .we(DMEM_out), .re(DMEM_in) .address(DMEM_addr), .d_in(bus), .d_out(bus));
 

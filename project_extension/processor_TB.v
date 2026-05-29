@@ -18,6 +18,7 @@ module processor_TB;
     initial begin 
         reset = 0;
 		address = 8'h00;
+        #4000 $finish;
 	end
 	
 	always @(posedge clk) begin
@@ -26,19 +27,26 @@ module processor_TB;
             write = 0;
             start_PC = 1;
         end else begin
-		address = address + 8'h01;
+		    address = address + 8'h01;
         end
 	end
 	
 	always @(address) begin
 		case (address)
-		    8'h00 : begin instruction <= {4'h0, 4'h0, 4'h0, 4'h0}; end
-            8'h01 : begin instruction <= {4'h0, 4'h0, 4'h0, 4'h0}; end
-            8'h02 : begin instruction <= {4'h0, 4'h0, 4'h0, 4'h0}; end
-            8'h03 : begin instruction <= {4'h0, 4'h0, 4'h0, 4'h0}; end
+		    8'h00 : begin instruction <= {4'h0, 4'h0, 4'h0, 4'h0}; end // LOAD R1, 1
+            8'h01 : begin instruction <= {4'h0, 4'h0, 4'h0, 4'h0}; end // LOAD R2, 2
+            8'h02 : begin instruction <= {4'h0, 4'h0, 4'h0, 4'h0}; end // LOAD R3, 3
+            8'h03 : begin instruction <= {4'h0, 4'h0, 4'h0, 4'h0}; end // LOAD R4, 4
 		    default : begin instruction <= {4'h0, 4'h0, 4'h0, 4'h0};end
 	    endcase
 	end
+
+
+
+    initial begin
+        $dumpfile("processor_top_TB.vcd");
+        $dumpvars(0, processor_top_TB);
+    end
 
 
 
