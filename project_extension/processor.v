@@ -13,6 +13,14 @@ module processor (clk, reset, write, program_in);
     wire [7:0] PC_address;
     wire inc_PC, jump_en, read_bus_en, brsh;
     wire [15:0] r_en_OH, tri_controller_OH; 
+    wire A_en, G_en, G_out, status_reg_en, status_reg_out;
+    wire [2:0] ALU_mux;
+    wire dmem_out, dmem_in;
+    wire [7:0] dmem_addr;
+    wire [7:0] extern_data;
+    wire extern_en; 
+
+
 
 
     // Program RAM / Flash Memory Instance - 16bit wide & 256 addresses. 
@@ -69,7 +77,7 @@ module processor (clk, reset, write, program_in);
         .DMEM_in(dmem_in),
         .DMEM_addr(dmem_addr), 
         .extern_en(extern_en),
-        .extern_data(extern),
+        .extern_data(extern_data),
     );
 
     // Datapath Instance
@@ -88,7 +96,7 @@ module processor (clk, reset, write, program_in);
         .DMEM_in(dmem_in),
         .DMEM_addr(dmem_addr), 
         .extern_en(extern_en),
-        .extern_data(extern),
+        .extern_data(extern_data),
         .bus(bus);
     );
 
