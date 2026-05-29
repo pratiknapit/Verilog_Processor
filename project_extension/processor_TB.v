@@ -4,49 +4,77 @@ module processor_TB;
 
     reg clk, reset, write;
     reg [7:0] address;
-    reg [15:0] instruction; // 16 long array of instructions each holding 15 bit value
+    reg [15:0] instruction;
     reg start_PC;
 
-    processor my_processor(.clk(clk), .reset(reset), .write(write), .start(start_PC), .write_pmem_address(address), .program_in(instruction));
+    wire [7:0] write_addr;
+
+    processor my_processor(
+        .clk(clk),
+        .reset(reset),
+        .write(write),
+        .start(start_PC),
+        .write_pmem_address(address),
+        .program_in(instruction)
+    );
 
     initial clk = 0;
     always #5 clk = ~clk;
 
-    initial reset = 1;
+    integer i;
 
-    initial begin 
-        reset = 0;
-		address = 8'h00;
-        #4000 $finish;
-	end
-	
-	always @(posedge clk) begin
-        if (address == 8'h0A) begin
-            address = address;
-            write = 0;
-            start_PC = 1;
-        end else begin
-		    address = address + 8'h01;
+    initial begin
+        reset = 1;
+        write = 1;
+        start_PC = 0;
+        address = 8'h00;
+        instruction = 16'h0000;
+
+        #20 reset = 0;
+
+        // -----------------------------
+        // Load instructions into PMEM
+        // -----------------------------
+        #10;
+        write = 1;
+
+        for (i = 0; i < 4; i = i + 1) begin
+            @(posedge clk);
+            address = i[7:0];
         end
-	end
-	
-	always @(address) begin
-		case (address)
-		    8'h00 : begin instruction <= {4'h0, 4'h0, 4'h0, 4'h0}; end // LOAD R1, 1
-            8'h01 : begin instruction <= {4'h0, 4'h0, 4'h0, 4'h0}; end // LOAD R2, 2
-            8'h02 : begin instruction <= {4'h0, 4'h0, 4'h0, 4'h0}; end // LOAD R3, 3
-            8'h03 : begin instruction <= {4'h0, 4'h0, 4'h0, 4'h0}; end // LOAD R4, 4
-		    default : begin instruction <= {4'h0, 4'h0, 4'h0, 4'h0};end
-	    endcase
-	end
 
+        // stop writing
+        @(posedge clk);
+        write = 0;
 
+        // -----------------------------
+        // start processor execution
+        // -----------------------------
+        @(posedge clk);
+        start_PC = 1;
+
+        @(posedge clk);
+        start_PC = 0;
+
+        // let CPU run
+        #5000;
+
+        $finish;
+    end
+
+    always @(address) begin
+        case (address)
+            8'h00: instruction = {4'h0, 4'h1, 4'h0, 4'h1};
+            8'h01: instruction = {4'h0, 4'h2, 4'h0, 4'h2};
+            8'h02: instruction = {4'h0, 4'h3, 4'h0, 4'h8};
+            8'h03: instruction = {4'h0, 4'h4, 4'h1, 4'h0};
+            default: instruction = 16'h0000;
+        endcase
+    end
 
     initial begin
         $dumpfile("processor_TB.vcd");
         $dumpvars(0, processor_TB);
     end
-
-
 
 endmodule
