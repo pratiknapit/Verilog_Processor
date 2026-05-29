@@ -1,8 +1,9 @@
-module ns_CU();
-    input reset;
-    input [7:0] state; 
-    input [15:0] inst;
-    output [7:0] n_state;
+module ns_CU(
+        input reset;
+        input [7:0] state; 
+        input [15:0] inst;
+        output [7:0] n_state;
+    );
 
     wire[3:0] operation = inst[15:12]; // Extract Operation for State Transition
     wire[11:0] arguments = inst[11:0];

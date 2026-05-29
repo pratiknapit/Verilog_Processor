@@ -1,4 +1,4 @@
-module binary_to_onehot();
+module binary_to_onehot(fourbit, onehot);
     input [3:0] fourbit;
     output reg[15:0] onehot;
 

@@ -1,15 +1,17 @@
-module datapath(clk, reset);
-    input clk, reset;
-    input[7:0] extern_data;
-    input[15:0] r_en_OH, tri_controller_OH;
-    input A_en, G_en, G_out, status_reg_en, status_reg_out;
-    input[2:0] ALU_mux;
-    input inc_PC, PC_jump_en, PC_read_bus_en, brsh;
-    input DMEM_out, DMEM_in;
-    input[7:0] DMEM_addr;
-    input extern_en; 
+module datapath(
+        input clk, reset;
+        input[15:0] r_en_OH, tri_controller_OH;
+        input A_en, G_en, G_out, status_reg_en, status_reg_out;
+        input[2:0] ALU_mux;
+        // input inc_PC, PC_jump_en, PC_read_bus_en, brsh;
+        input DMEM_out, DMEM_in;
+        input[7:0] DMEM_addr;
+        input extern_en; 
+        input[7:0] extern_data;
+        output wire[15:0] bus;
+    );
 
-    output wire[15:0] bus;
+
     wire[15:0] register_out[15:0];
     wire[15:0] ALU_arg1, ALU_result;
 

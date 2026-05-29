@@ -8,14 +8,11 @@ module processor (clk, reset, write, program_in);
 
     // -------------------------------------------------------------------------------
 
-
-    wire [15:0] r_en_OH, tri_controller_OH; // one hot encoding - r_en_OH[0] enables Reg0.
     wire [15:0] bus;
-    wire inc_PC, branch;
-    wire [7:0]  PC_address; // 8 bit address
-    
-    wire [7:0]  data_ram_address;
-    wire [15:0] code, ir_reg;
+    wire [15:0] code;
+    wire [7:0] PC_address;
+    wire inc_PC, jump_en, read_bus_en, brsh;
+    wire [15:0] r_en_OH, tri_controller_OH; 
 
 
     // Program RAM / Flash Memory Instance - 16bit wide & 256 addresses. 
@@ -24,7 +21,7 @@ module processor (clk, reset, write, program_in);
         .reset(reset),
         .write_enable(write), // Write = 1 at start of program -> Write = 0 once processor starts to Read-only
         .write_address(write_pmem_address), // Receives PC_address from PC counter and outputs the current code
-        .read_address(PC_address)
+        .read_address(PC_address),
         .data_in(program_in),
         .data_out(code) // Outputs code to instruction register (inst_reg)
     );
@@ -35,7 +32,9 @@ module processor (clk, reset, write, program_in);
         .reset(reset), // on reset -> PC = 
         .start(start),
         .inc_PC(inc_PC),
-        .branch(branch_en),
+        .jump_en(jump_en),
+        .read_bus_en(read_bus_en),
+        .brsh(brsh),
         .bus(bus), // accept branch amount from bus if branch_en = 1;
         .address(PC_address) // output the PC address.
     );
@@ -56,29 +55,41 @@ module processor (clk, reset, write, program_in);
         .instruction(ir_code), // Gets 16-bit code from IR
         .r_en_OH(r_en_OH),
         .tri_controller_OH(tri_controller_OH),
-        .inc_PC(inc_PC),
-        .branch(branch_en),
-        .extern(extern),
-        .RAM_data_access(data_save)
+        .A_en(A_en), 
+        .G_en(G_en), 
+        .G_out(G_out), 
+        .status_reg_en(sreg_en), 
+        .status_reg_out(sreg_out), 
+        .ALU_mux(ALU_sig),
+        .inc_PC(inc_PC), // Go to PC
+        .PC_jump_en(jump_en), // Go to PC
+        .PC_read_bus_en(read_bus_en), // Go to PC
+        .brsh(brsh), // Go to PC
+        .DMEM_out(dmem_out), 
+        .DMEM_in(dmem_in),
+        .DMEM_addr(dmem_addr), 
+        .extern_en(extern_en),
+        .extern_data(extern),
     );
 
     // Datapath Instance
-    my_Datapath datapath(
+    datapath my_datapath(
         .clk(clk),
         .reset(reset),
-        .extern(extern),
-        .code(ir_reg), // FIXED: Commonly needs immediate values or register fields from IR
         .r_en_OH(r_en_OH),
         .tri_controller_OH(tri_controller_OH),
-    );
-
-    // Program RAM / Flash Memory Instance - 16bit wide & 256 addresses. 
-    data_ram DMEM(
-        // .clk(clk),
-        .write_enable(write), // Write = 1 at start of program -> Write = 0 once processor starts to Read-only
-        .address(data_address), // Get from processor
-        .data_in(data_save), // STS R18, ADDR
-        .data_out(data_load) // Outputs code to instruction register (inst_reg)
+        .A_en(A_en), 
+        .G_en(G_en), 
+        .G_out(G_out), 
+        .status_reg_en(sreg_en), 
+        .status_reg_out(sreg_out), 
+        .ALU_mux(ALU_sig), 
+        .DMEM_out(dmem_out), 
+        .DMEM_in(dmem_in),
+        .DMEM_addr(dmem_addr), 
+        .extern_en(extern_en),
+        .extern_data(extern),
+        .bus(bus);
     );
 
 endmodule

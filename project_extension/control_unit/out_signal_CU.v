@@ -1,4 +1,4 @@
-module out_signal_CU.v ();
+module out_signal_CU.v (
     input[7:0] state;
     input[15:0] code;
     output reg[3:0] r_en;
@@ -6,10 +6,11 @@ module out_signal_CU.v ();
     output A_en, G_en, G_out, status_reg_en, status_reg_out;
     output[2:0] ALU_mux; 
     output inc_PC, PC_jump_en, PC_read_bus_en, brsh;
-    output DMEM_out;
+    output DMEM_out, DMEM_in;
     output[7:0] DMEM_addr;
-    output[7:0] extern;
+    output[7:0] extern_data;
     output extern_en; 
+    );
 
     // Set all signals to 0 first.
 
@@ -41,7 +42,6 @@ module out_signal_CU.v ();
             8'h18 : begin r_en <= code[11:8]; PC_inc <= 1; end // lds2 r1, 8bitaddress
             8'h19 : begin DMEM_in <= 1; DMEM_addr <= code[7:0]; end // lds r1, 8bitaddress
             8'h1A : begin tri_controller_out <= code[11:8]; PC_inc <= 1; end // lds2 r1, 8bitaddress
-
         endcase
 
     end
