@@ -1,6 +1,7 @@
-module data_memory (
+module DMEM(
     input wire clk,
-    input wire we, re,                 // write enable
+    input wire we, 
+    input wire re,                 // write enable
     input wire [7:0] address,      // 256 addresses
     input wire [15:0] d_in,         // data input
     output reg [15:0] d_out         // data output
