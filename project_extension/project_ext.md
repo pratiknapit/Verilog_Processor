@@ -3,23 +3,27 @@
 => ALU performs 16bit addition, 16bit substration & 16bit logic. (Henry/Steven) - ADD, SUB, INC, DEC, LSL
 
 For this project we will have these instructions
-- LOAD R3, 64 -> 0001 0011 0100 0000 (16bit instruction). PMEM 16bit wide & 256 addresses
+- LDI R3, 64 -> 0001 0011 0100 0000 (16bit instruction). PMEM 16bit wide & 256 addresses
+Datapath -> R3_en = 1, bus = 64; Everything else is 0.
 - MOV Rx, Ry
 - ADD Rx, Ry
 - SUB Rx, Ry
 - INC Rx
 - DEC Rx
 - LSL Rx
+- LSR Rx
 
 - JMP k (Means jump to k instructions later => PC -> PC+k+1)
 - CP Rx, Ry (Store in status reg N == 1 if Rx < Ry) -> CP Rx, Ry -> ALU : Rx - Ry e.g. 3 - 5 => -2 (last bit will be 1) => N == 1;
 - BRSH k (Means branch to k instructions later if Rx >= Ry) = Read from Status Register
 - BRLO k (Means branch to k instructions later if Rx < Ry) = Read from Status Register
 
+Indirect addressing -> Load Addr directly onto the bus
 - LDS Rx, Addr (Load addr from Data RAM into Rx)
 - STS Addr, Rx (Store Rx value into Data RAM at address)
+- END (End program)
 
------------> Total of 13 instructions => Need 4 bits for instruction.
+-----------> Total of 14 instructions => Need 4 bits for instruction.
 
 We will have 16 general purpose registers (16 bit) with tri-state buffers = Register File. Each register has an enable and tri-state has out signal. 
 
