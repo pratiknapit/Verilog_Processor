@@ -2,13 +2,12 @@
 
 module processor_TB;
 
-    reg clk, rst, write;
+    reg clk, reset, write;
     reg [7:0] address;
     reg [15:0] instruction; // 16 long array of instructions each holding 15 bit value
-    wire start_PC;
+    reg start_PC;
 
-    processor my_processor(.clk(clk), .reset(reset), .write(write), .start(start_PC)
-    .write_pmem_address(address), .program_in(instruction));
+    processor my_processor(.clk(clk), .reset(reset), .write(write), .start(start_PC), .write_pmem_address(address), .program_in(instruction));
 
     initial clk = 0;
     always #5 clk = ~clk;
@@ -44,8 +43,8 @@ module processor_TB;
 
 
     initial begin
-        $dumpfile("processor_top_TB.vcd");
-        $dumpvars(0, processor_top_TB);
+        $dumpfile("processor_TB.vcd");
+        $dumpvars(0, processor_TB);
     end
 
 

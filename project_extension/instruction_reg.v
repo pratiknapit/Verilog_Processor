@@ -1,12 +1,12 @@
-module instruction_register(clk, rst, D, Q); // D flip flop positive edge registers.
-    input clk, rst;
-    input[15:0] D;
-    output reg[15:0] Q;
+module instruction_reg(clk, reset, d_in, q_out); // D flip flop positive edge registers.
+    input clk, reset;
+    input[15:0] d_in;
+    output reg[15:0] q_out;
 
-    always @(posedge clk or posedge rst) begin
-        if (rst == 1'b1)
-            Q <= 16'h0000;
+    always @(posedge clk or posedge reset) begin
+        if (reset == 1'b1)
+            q_out <= 16'h0000;
         else
-            Q <= D; 
+            q_out <= d_in; 
     end
 endmodule
